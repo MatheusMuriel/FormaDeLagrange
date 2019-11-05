@@ -79,7 +79,7 @@ export default {
 
     let endereco = isDev ? 'localhost:8000' : 'matheusmuriel.pythonanywhere.com'
 
-    let sufixo = '/lagrange'
+    let sufixo = '/lagrange/'
 
     this.apiUrl = prefixo + endereco + sufixo
   },
@@ -103,7 +103,6 @@ export default {
 
       let strObject = JSON.stringify(objectValores)
 
-      console.log(strObject)
       axios.post(this.apiUrl, strObject)
         .then((response) => {
           console.log(response)
