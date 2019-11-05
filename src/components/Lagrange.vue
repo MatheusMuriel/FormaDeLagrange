@@ -99,7 +99,7 @@ export default {
       objectValores['F4'] = this.valorF4
       objectValores['F5'] = this.valorF5
 
-      objectValores['X'] = this.valorX
+      objectValores['PX'] = this.valorX
 
       for (let chave in objectValores) {
         let valor = objectValores[chave]
