@@ -53,29 +53,64 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 
 export default {
-  data: function () {
+  data () {
     return {
-      valorX1: null,
-      valorX2: null,
-      valorX3: null,
-      valorX4: null,
-      valorX5: null,
-      valorF1: null,
-      valorF2: null,
-      valorF3: null,
-      valorF4: null,
-      valorF5: null,
-      valorX: null
+      valorX1: 1,
+      valorX2: 2,
+      valorX3: 3,
+      valorX4: 4,
+      valorX5: 5,
+      valorF1: 11,
+      valorF2: 22,
+      valorF3: 33,
+      valorF4: 44,
+      valorF5: 55,
+      valorX: 999,
+      apiUrl: ''
     }
+  },
+  created () {
+    let isDev = process.env.NODE_ENV === 'development'
+
+    let prefixo = 'http://'
+
+    let endereco = isDev ? 'localhost:8000' : 'matheusmuriel.pythonanywhere.com'
+
+    let sufixo = '/lagrange'
+
+    this.apiUrl = prefixo + endereco + sufixo
   },
   methods: {
     clickCalcular () {
-      // axios
-      // .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-      // .then(response => (console.log(response.data.bpi)))
+      let objectValores = {}
+
+      objectValores['X1'] = this.valorX1
+      objectValores['X2'] = this.valorX2
+      objectValores['X3'] = this.valorX3
+      objectValores['X4'] = this.valorX4
+      objectValores['X5'] = this.valorX5
+
+      objectValores['F1'] = this.valorF1
+      objectValores['F2'] = this.valorF2
+      objectValores['F3'] = this.valorF3
+      objectValores['F4'] = this.valorF4
+      objectValores['F5'] = this.valorF5
+
+      objectValores['X'] = this.valorX
+
+      let strObject = JSON.stringify(objectValores)
+
+      console.log(strObject)
+      axios.post(this.apiUrl, strObject)
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
 }
