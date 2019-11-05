@@ -58,17 +58,17 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      valorX1: 1,
-      valorX2: 2,
-      valorX3: 3,
-      valorX4: 4,
-      valorX5: 5,
-      valorF1: 11,
-      valorF2: 22,
-      valorF3: 33,
-      valorF4: 44,
-      valorF5: 55,
-      valorX: 999,
+      valorX1: -2,
+      valorX2: -1,
+      valorX3: 0,
+      valorX4: 1,
+      valorX5: 2,
+      valorF1: -2,
+      valorF2: 29,
+      valorF3: 30,
+      valorF4: 31,
+      valorF5: 62,
+      valorX: 1.5,
       apiUrl: ''
     }
   },
@@ -101,11 +101,23 @@ export default {
 
       objectValores['X'] = this.valorX
 
+      for (let chave in objectValores) {
+        let valor = objectValores[chave]
+        // eslint-disable-next-line
+        if (valor || valor === 0){
+          objectValores[chave] = valor
+        } else {
+          objectValores[chave] = 'null'
+        }
+      }
+
       let strObject = JSON.stringify(objectValores)
+
+      console.log(strObject)
 
       axios.post(this.apiUrl, strObject)
         .then((response) => {
-          console.log(response)
+          console.log(response.data)
         })
         .catch((error) => {
           console.log(error)
