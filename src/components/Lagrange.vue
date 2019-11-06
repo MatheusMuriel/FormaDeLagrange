@@ -4,6 +4,20 @@
 
     <b-container class="inputs">
       <b-row class="linha-input" align-h="center">
+        <div v-if="resposta">
+          Resposta: {{resposta}}
+        </div>
+      </b-row>
+
+      <b-row class="linha-input" align-h="center">
+        <b-col>1</b-col>
+        <b-col>2</b-col>
+        <b-col>3</b-col>
+        <b-col>4</b-col>
+        <b-col>5</b-col>
+      </b-row>
+
+      <b-row class="linha-input" align-h="center">
         <b-col>
           <b-input class="input-input" v-model="valorX1" placeholder="X1"/>
         </b-col>
@@ -49,6 +63,7 @@
         <b-button variant="outline-primary" @click="clickCalcular">Calcular</b-button>
       </b-row>
     </b-container>
+
   </div>
 </template>
 
@@ -69,6 +84,7 @@ export default {
       valorF4: 31,
       valorF5: 62,
       valorX: 1.5,
+      resposta: '',
       apiUrl: ''
     }
   },
@@ -113,11 +129,14 @@ export default {
 
       axios.post(this.apiUrl, strObject)
         .then((response) => {
-          console.log(response.data)
+          this.exibirResposta(response.data)
         })
         .catch((error) => {
           console.log(error)
         })
+    },
+    exibirResposta (valor) {
+      this.resposta = valor
     }
   }
 }
