@@ -69,7 +69,7 @@ export default {
       valorF4: 31,
       valorF5: 62,
       valorX: 1.5,
-      apiUrl: 'https://matheusmuriel.pythonanywhere.com/lagrange/'
+      apiUrl: ''
     }
   },
   created () {
@@ -81,7 +81,7 @@ export default {
 
     let sufixo = '/lagrange/'
 
-    //this.apiUrl = prefixo + endereco + sufixo
+    this.apiUrl = prefixo + endereco + sufixo
   },
   methods: {
     clickCalcular () {
@@ -99,7 +99,7 @@ export default {
       objectValores['F4'] = this.valorF4
       objectValores['F5'] = this.valorF5
 
-      objectValores['P1X'] = this.valorX
+      objectValores['PX'] = this.valorX
 
       for (let chave in objectValores) {
         let valor = objectValores[chave]
