@@ -75,13 +75,11 @@ export default {
   created () {
     let isDev = process.env.NODE_ENV === 'development'
 
-    let prefixo = 'http://'
-
-    let endereco = isDev ? 'localhost:8000' : 'matheusmuriel.pythonanywhere.com'
+    let endereco = isDev ? 'http://localhost:8000' : 'https://matheusmuriel.pythonanywhere.com'
 
     let sufixo = '/lagrange/'
 
-    this.apiUrl = prefixo + endereco + sufixo
+    this.apiUrl = endereco + sufixo
   },
   methods: {
     clickCalcular () {
@@ -113,21 +111,11 @@ export default {
 
       let strObject = JSON.stringify(objectValores)
 
-      console.log(strObject)
-
-      // axios.post(this.apiUrl, strObject)
-      axios.post('http://matheusmuriel.pythonanywhere.com/lagrange/', strObject)
+      axios.post(this.apiUrl, strObject)
         .then((response) => {
           console.log(response.data)
         })
         .catch((error) => {
-          axios.post('https://matheusmuriel.pythonanywhere.com/lagrange/', strObject)
-            .then((response) => {
-              console.log(response.data)
-            })
-            .catch((error) => {
-              console.log(error)
-            })
           console.log(error)
         })
     }
