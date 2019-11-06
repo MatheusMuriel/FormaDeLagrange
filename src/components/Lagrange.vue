@@ -115,11 +115,19 @@ export default {
 
       console.log(strObject)
 
-      axios.post(this.apiUrl, strObject)
+      // axios.post(this.apiUrl, strObject)
+      axios.post('http://matheusmuriel.pythonanywhere.com/lagrange/', strObject)
         .then((response) => {
           console.log(response.data)
         })
         .catch((error) => {
+          axios.post('https://matheusmuriel.pythonanywhere.com/lagrange/', strObject)
+            .then((response) => {
+              console.log(response.data)
+            })
+            .catch((error) => {
+              console.log(error)
+            })
           console.log(error)
         })
     }
