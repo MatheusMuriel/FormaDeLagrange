@@ -2,7 +2,7 @@
   <div class="div-principal">
     <b-container class="images">
       <b-row align-h="center">
-        <h2>Selecione seu personagem: </h2>
+        <h2>Selecione seu personagem</h2>
       </b-row>
       <b-row>
         <b-col>
