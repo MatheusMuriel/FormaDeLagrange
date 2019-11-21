@@ -1,26 +1,18 @@
 <template>
   <div class="div-principal">
-    <b-container class="images">
-      <b-row align-h="center">
-        <h2>Selecione seu personagem</h2>
-      </b-row>
-      <b-row>
-        <b-col>
-          <b-row align-h="end">
-            <!-- Lagrange -->
-            <img :class="newtonSelected ? 'img-principal' : 'img-principal personagemSelecionado'"
-                  @click="selectLagrange" src="https://i.imgur.com/vBqV9Gx.jpg" >
-          </b-row>
-        </b-col>
-        <b-col>
-          <b-row align-h="start">
-            <!-- Newton -->
-            <img :class="newtonSelected ? 'img-principal personagemSelecionado' : 'img-principal'"
-                  @click="selectNewton" src="https://i.imgur.com/V8U6qzr.jpg">
-          </b-row>
-        </b-col>
-      </b-row>
-    </b-container>
+
+    <div class="linha-images">
+      <h2>Selecione seu personagem</h2>
+      <div class="images">
+      <!-- Lagrange -->
+      <img :class="newtonSelected ? 'img-principal' : 'img-principal personagemSelecionado'"
+            @click="selectLagrange" src="https://i.imgur.com/vBqV9Gx.jpg" >
+
+      <!-- Newton -->
+      <img :class="newtonSelected ? 'img-principal personagemSelecionado' : 'img-principal'"
+            @click="selectNewton" src="https://i.imgur.com/V8U6qzr.jpg">
+      </div>
+    </div>
 
     <b-container class="inputs">
       <b-row class="linha-input" align-h="center">
@@ -30,89 +22,43 @@
       </b-row>
 
       <!-- Head -->
-      <b-row>
-        <b-col sm="auto">
-          <b-row align-v="center" class="coluninha-linha"><h5></h5></b-row>
-        </b-col>
-        <b-col  cols="11">
-          <b-row class="linha-header" align-h="center">
-            <b-col><h5>1</h5></b-col>
-            <b-col><h5>2</h5></b-col>
-            <b-col><h5>3</h5></b-col>
-            <b-col><h5>4</h5></b-col>
-            <b-col><h5>5</h5></b-col>
-          </b-row>
-        </b-col>
+      <b-row class="linha-head">
+        <div class="espacador"></div>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
       </b-row>
 
       <!-- Input X -->
-      <b-row>
-        <b-col sm="auto">
-          <b-row align-v="center" class="coluninha-linha"><h5>x</h5></b-row>
-        </b-col>
-        <b-col cols="11">
-          <b-row class="linha-input" align-h="center">
-            <b-col>
-              <b-input class="input-input" v-model="valorX1" placeholder="X1"/>
-            </b-col>
-            <b-col>
-              <b-input class="input-input" v-model="valorX2" placeholder="X2"/>
-            </b-col>
-            <b-col>
-              <b-input class="input-input" v-model="valorX3" placeholder="X3"/>
-            </b-col>
-            <b-col>
-              <b-input class="input-input" v-model="valorX4" placeholder="X4"/>
-            </b-col>
-            <b-col>
-              <b-input class="input-input" v-model="valorX5" placeholder="X5"/>
-            </b-col>
-          </b-row>
-        </b-col>
+      <b-row class="linha-tabela" align-h="center">
+        <h5>x</h5>
+        <b-input class="input-camp" v-model="valorX1" placeholder="X1"/>
+        <b-input class="input-camp" v-model="valorX2" placeholder="X2"/>
+        <b-input class="input-camp" v-model="valorX3" placeholder="X3"/>
+        <b-input class="input-camp" v-model="valorX4" placeholder="X4"/>
+        <b-input class="input-camp" v-model="valorX5" placeholder="X5"/>
       </b-row>
 
       <!-- Input Fx -->
-      <b-row>
-        <b-col sm="auto">
-          <b-row align-v="center" class="coluninha-linha"><h5>F(x)</h5></b-row>
-        </b-col>
-        <b-col  cols="11">
-          <b-row class="linha-input" align-h="center">
-            <b-col>
-              <b-input class="input-input" v-model="valorF1" placeholder="F1"/>
-            </b-col>
-            <b-col>
-              <b-input class="input-input" v-model="valorF2" placeholder="F2"/>
-            </b-col>
-            <b-col>
-              <b-input class="input-input" v-model="valorF3" placeholder="F3"/>
-            </b-col>
-            <b-col>
-              <b-input class="input-input" v-model="valorF4" placeholder="F4"/>
-            </b-col>
-            <b-col>
-              <b-input class="input-input" v-model="valorF5" placeholder="F5"/>
-            </b-col>
-          </b-row>
-        </b-col>
+      <b-row class="linha-tabela" align-h="center">
+        <h5>F(x)</h5>
+        <b-input class="input-camp" v-model="valorF1" placeholder="F1"/>
+        <b-input class="input-camp" v-model="valorF2" placeholder="F2"/>
+        <b-input class="input-camp" v-model="valorF3" placeholder="F3"/>
+        <b-input class="input-camp" v-model="valorF4" placeholder="F4"/>
+        <b-input class="input-camp" v-model="valorF5" placeholder="F5"/>
       </b-row>
 
       <!-- Input PX -->
-      <b-row align-h="center">
-        <b-col cols="2">
-          <b-row align-h="center">
-            <P>P(x)</P>
-          </b-row>
-          <b-row class="inputpx" align-h="center">
-            <b-input class="input-input" v-model="valorX" placeholder="X"/>
-          </b-row>
-        </b-col>
+      <b-row class="linha-tabela" align-h="center">
+        <p>P(x)</p>
+        <b-input class="input-camp" v-model="valorX" placeholder="X"/>
       </b-row>
 
-      <b-row  align-h="center" class="btn-input">
-        <b-col cols="2">
-          <b-button variant="outline-primary" @click="clickCalcular">Calcular</b-button>
-        </b-col>
+      <b-row  align-h="center" >
+        <b-button class="btn-calc" variant="outline-primary" @click="clickCalcular">Calcular</b-button>
       </b-row>
     </b-container>
 
@@ -169,7 +115,6 @@ export default {
       }
 
       let strObject = JSON.stringify(objectValores)
-      console.log(this.getUrl())
       axios.post(this.getUrl(), strObject)
         .then((response) => {
           this.exibirResposta(response.data)
@@ -198,6 +143,9 @@ export default {
 </script>
 
 <style>
+body {
+  min-width: 375px;
+}
 .div-principal {
   display: flex;
   justify-items: center;
@@ -246,12 +194,63 @@ export default {
   height: 100%;
   justify-content: center;
 }
-.input-input {
-  text-align: center;
-}
 .personagemSelecionado {
   border-width: medium;
   border-style: solid;
   border-color: #00f;
+}
+.btn-calc {
+  min-width: 90px;
+  margin-top: 5%;
+}
+.linha-images {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  flex-direction: column;
+}
+.linha-images h2 {
+  text-align: center;
+}
+.images {
+  display: flex;
+  justify-content: center;
+  flex-flow: row nowrap;
+}
+.linha-tabela {
+  text-align: center;
+  flex-flow: row nowrap;
+  margin-top: 3%;
+}
+.linha-tabela h5 {
+  flex-grow: 1;
+  text-align: center;
+  margin: auto;
+}
+.linha-tabela .input-camp{
+  width: 16%;
+  justify-content: center;
+  align-items: center;
+  margin-inline: 1%;
+  text-align: center;
+}
+.linha-tabela p {
+  margin-bottom: auto;
+  margin-top: auto;
+}
+.linha-head {
+  justify-content: space-between;
+  text-align: center;
+  margin-bottom: -4%;
+}
+.linha-head .espacador {
+  flex-grow: 1;
+  text-align: center;
+  margin: auto;
+}
+.linha-head p {
+  width: 16%;
+  margin-inline: 1%;
+  color: dimgrey;
 }
 </style>
