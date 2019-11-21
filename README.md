@@ -1,6 +1,8 @@
-# forma-de-lagrange
+# Forma de Lagrange
 
-> FrontEnd para o calculo da forma de lagrange
+> FrontEnd para interpolação polinomial pelo método de Lagrange e Newton
+
+<h5 align="center">Disponivel em: </br><a href="https://matheusmuriel.github.io/FormaDeLagrange/">MatheusMuriel.github.io/FormaDeLagrange/</a></h5>
 
 ## Build Setup
 
