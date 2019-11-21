@@ -30,7 +30,7 @@
       </b-row>
 
       <!-- Head -->
-      <b-row>2
+      <b-row>
         <b-col sm="auto">
           <b-row align-v="center" class="coluninha-linha"><h5></h5></b-row>
         </b-col>
@@ -48,7 +48,7 @@
       <!-- Input X -->
       <b-row>
         <b-col sm="auto">
-          <b-row align-v="center" class="coluninha-linha"><h5>X</h5></b-row>
+          <b-row align-v="center" class="coluninha-linha"><h5>x</h5></b-row>
         </b-col>
         <b-col cols="11">
           <b-row class="linha-input" align-h="center">
@@ -74,7 +74,7 @@
       <!-- Input Fx -->
       <b-row>
         <b-col sm="auto">
-          <b-row align-v="center" class="coluninha-linha"><h5>fX</h5></b-row>
+          <b-row align-v="center" class="coluninha-linha"><h5>F(x)</h5></b-row>
         </b-col>
         <b-col  cols="11">
           <b-row class="linha-input" align-h="center">
@@ -98,16 +98,20 @@
       </b-row>
 
       <!-- Input PX -->
-      <b-row class="linha-input" align-h="center">
+      <b-row align-h="center">
         <b-col cols="2">
-          <b-input class="input-input" v-model="valorX" placeholder="X"/>
+          <b-row align-h="center">
+            <P>P(x)</P>
+          </b-row>
+          <b-row class="inputpx" align-h="center">
+            <b-input class="input-input" v-model="valorX" placeholder="X"/>
+          </b-row>
         </b-col>
       </b-row>
 
       <b-row  align-h="center" class="btn-input">
         <b-col cols="2">
-          <b-button variant="outline-primary" @click="clickCalcular">Calcular Lagrange</b-button>
-          <b-button variant="outline-primary" @click="clickCalcular">Calcular Newton</b-button>
+          <b-button variant="outline-primary" @click="clickCalcular">Calcular</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -133,18 +137,8 @@ export default {
       valorF5: 62,
       valorX: 1.5,
       resposta: '',
-      apiUrl: '',
       newtonSelected: false
     }
-  },
-  created () {
-    let isDev = process.env.NODE_ENV === 'development'
-
-    let endereco = isDev ? 'http://localhost:8000' : 'https://matheusmuriel.pythonanywhere.com'
-
-    let sufixo = '/lagrange/'
-
-    this.apiUrl = endereco + sufixo
   },
   methods: {
     clickCalcular () {
@@ -175,14 +169,20 @@ export default {
       }
 
       let strObject = JSON.stringify(objectValores)
-
-      axios.post(this.apiUrl, strObject)
+      console.log(this.getUrl())
+      axios.post(this.getUrl(), strObject)
         .then((response) => {
           this.exibirResposta(response.data)
         })
         .catch((error) => {
           console.log(error)
         })
+    },
+    getUrl () {
+      let isDev = process.env.NODE_ENV === 'development'
+      let endereco = isDev ? 'http://localhost:8000' : 'https://matheusmuriel.pythonanywhere.com'
+      let sufixo = this.newtonSelected ? '/newton/' : '/lagrange/'
+      return (endereco + sufixo)
     },
     exibirResposta (valor) {
       this.resposta = valor
@@ -245,6 +245,9 @@ export default {
 .coluninha-linha {
   height: 100%;
   justify-content: center;
+}
+.input-input {
+  text-align: center;
 }
 .personagemSelecionado {
   border-width: medium;
