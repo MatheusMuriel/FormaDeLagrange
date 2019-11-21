@@ -1,6 +1,26 @@
 <template>
   <div class="div-principal">
-    <img src="https://i.imgur.com/vBqV9Gx.jpg" class="img-principal">
+    <b-container class="images">
+      <b-row align-h="center">
+        <h2>Selecione seu personagem: </h2>
+      </b-row>
+      <b-row>
+        <b-col>
+          <b-row align-h="end">
+            <!-- Lagrange -->
+            <img :class="newtonSelected ? 'img-principal' : 'img-principal personagemSelecionado'"
+                  @click="selectLagrange" src="https://i.imgur.com/vBqV9Gx.jpg" >
+          </b-row>
+        </b-col>
+        <b-col>
+          <b-row align-h="start">
+            <!-- Newton -->
+            <img :class="newtonSelected ? 'img-principal personagemSelecionado' : 'img-principal'"
+                  @click="selectNewton" src="https://i.imgur.com/V8U6qzr.jpg">
+          </b-row>
+        </b-col>
+      </b-row>
+    </b-container>
 
     <b-container class="inputs">
       <b-row class="linha-input" align-h="center">
@@ -10,7 +30,7 @@
       </b-row>
 
       <!-- Head -->
-      <b-row>
+      <b-row>2
         <b-col sm="auto">
           <b-row align-v="center" class="coluninha-linha"><h5></h5></b-row>
         </b-col>
@@ -76,7 +96,6 @@
           </b-row>
         </b-col>
       </b-row>
-      
 
       <!-- Input PX -->
       <b-row class="linha-input" align-h="center">
@@ -87,7 +106,8 @@
 
       <b-row  align-h="center" class="btn-input">
         <b-col cols="2">
-          <b-button variant="outline-primary" @click="clickCalcular">Calcular</b-button>
+          <b-button variant="outline-primary" @click="clickCalcular">Calcular Lagrange</b-button>
+          <b-button variant="outline-primary" @click="clickCalcular">Calcular Newton</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -113,7 +133,8 @@ export default {
       valorF5: 62,
       valorX: 1.5,
       resposta: '',
-      apiUrl: ''
+      apiUrl: '',
+      newtonSelected: false
     }
   },
   created () {
@@ -165,6 +186,12 @@ export default {
     },
     exibirResposta (valor) {
       this.resposta = valor
+    },
+    selectLagrange () {
+      this.newtonSelected = false
+    },
+    selectNewton () {
+      this.newtonSelected = true
     }
   }
 }
@@ -177,11 +204,15 @@ export default {
   align-items: center;
   flex-direction: column;
 }
+.div-principal .images{
+  height: 200px;
+  align-self: center;
+  align-content: center;
+}
 .img-principal {
-  flex-wrap: wrap;
-  width: 10%;
-  height: 10%;
-  margin: 50px;
+  height: 200px;
+  padding: 10px;
+  border-radius: 40%;
 }
 .inputs {
   align-self: center;
@@ -214,5 +245,10 @@ export default {
 .coluninha-linha {
   height: 100%;
   justify-content: center;
+}
+.personagemSelecionado {
+  border-width: medium;
+  border-style: solid;
+  border-color: #00f;
 }
 </style>
